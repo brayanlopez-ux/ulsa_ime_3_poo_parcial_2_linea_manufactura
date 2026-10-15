@@ -10,12 +10,12 @@
 
 #include <iostream>
 
-#include "BandaT.h"
-#include "EstacionI.h"
-#include "Fresadora.h"
-#include "Planta.h"
-#include "RobotSoldador.h"
-#include "TornoCNC.h"
+#include "../include/BandaT.h"
+#include "../include/EstacionI.h"
+#include "../include/Fresadora.h"
+#include "../include/Planta.h"
+#include "../include/RobotSoldador.h"
+#include "../include/TornoCNC.h"
 
 int main() {
     // 1. Crear las maquinas y registrarlas en la planta.
