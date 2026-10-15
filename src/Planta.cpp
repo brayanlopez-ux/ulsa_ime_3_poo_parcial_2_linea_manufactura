@@ -55,7 +55,7 @@ void Planta::apagarTodas() {
 }
 
 bool Planta::procesarPieza() {
-    // Estacion 1: Torno CNC
+    // 1. Torno CNC
     if (torno->estaEnFalla()) {
         std::cout << "  >> Linea detenida: " << torno->getNombre() << " en falla\n";
         torno->darMantenimiento();
@@ -64,25 +64,7 @@ bool Planta::procesarPieza() {
         return false;
     }
 
-    // Estacion 2: Fresadora
-    if (fresadora->estaEnFalla()) {
-        std::cout << "  >> Linea detenida: " << fresadora->getNombre() << " en falla\n";
-        fresadora->darMantenimiento();
-    }
-    if (!fresadora->procesarPieza()) {
-        return false;
-    }
-
-    // Estacion 3: Robot soldador
-    if (robot->estaEnFalla()) {
-        std::cout << "  >> Linea detenida: " << robot->getNombre() << " en falla\n";
-        robot->darMantenimiento();
-    }
-    if (!robot->procesarPieza()) {
-        return false;
-    }
-
-    // Estacion 4: Banda transportadora
+    // --- BANDA TRASLADA (Torno -> Fresadora) ---
     if (banda->estaEnFalla()) {
         std::cout << "  >> Linea detenida: " << banda->getNombre() << " en falla\n";
         banda->darMantenimiento();
@@ -91,7 +73,43 @@ bool Planta::procesarPieza() {
         return false;
     }
 
-    // Estacion 5: Estacion de inspeccion
+    // 2. Fresadora
+    if (fresadora->estaEnFalla()) {
+        std::cout << "  >> Linea detenida: " << fresadora->getNombre() << " en falla\n";
+        fresadora->darMantenimiento();
+    }
+    if (!fresadora->procesarPieza()) {
+        return false;
+    }
+
+    // --- BANDA TRASLADA (Fresadora -> Robot) ---
+    if (banda->estaEnFalla()) {
+        std::cout << "  >> Linea detenida: " << banda->getNombre() << " en falla\n";
+        banda->darMantenimiento();
+    }
+    if (!banda->procesarPieza()) {
+        return false;
+    }
+
+    // 3. Robot soldador
+    if (robot->estaEnFalla()) {
+        std::cout << "  >> Linea detenida: " << robot->getNombre() << " en falla\n";
+        robot->darMantenimiento();
+    }
+    if (!robot->procesarPieza()) {
+        return false;
+    }
+
+    // --- BANDA TRASLADA (Robot -> Inspeccion) ---
+    if (banda->estaEnFalla()) {
+        std::cout << "  >> Linea detenida: " << banda->getNombre() << " en falla\n";
+        banda->darMantenimiento();
+    }
+    if (!banda->procesarPieza()) {
+        return false;
+    }
+
+    // 4. Estacion de inspeccion
     if (inspeccion->estaEnFalla()) {
         std::cout << "  >> Linea detenida: " << inspeccion->getNombre() << " en falla\n";
         inspeccion->darMantenimiento();

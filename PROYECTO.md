@@ -50,7 +50,7 @@ Los equipos son de cinco o de seis integrantes, y la línea tiene una estación 
 | Estación de inspección | Medir la pieza | Sensor (calibración) |
 | Cortadora láser | Cortar el perfil | Lente |
 | Prensa | Doblar | Troquel |
-| Impresora 3D | Imprimir un inserto | Extrusor (filamento) |
+| Impresora 3Dw | Imprimir un inserto | Extrusor (filamento) |
 
 El equipo elige sus máquinas de este catálogo o propone otras. Qué atributos y métodos lleva cada clase, y cómo se modela el desgaste, lo decide cada responsable y lo justifica en su documentación.
 
